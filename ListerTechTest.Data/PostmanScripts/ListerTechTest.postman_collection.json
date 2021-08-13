@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "1afe58fd-c3a2-41d7-92f1-47cbb1ed3553",
+		"name": "ListerTechTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddPatient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 on adding patient\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200))\r",
+							"    var id = pm.response.json();\r",
+							"    pm.environment.set(\"patientId\", id);\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Bob\",\r\n  \"dateOfBirth\": \"2021-08-13T14:36:49.230Z\",\r\n  \"gender\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44377/api/Patient/AddPatient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Patient",
+						"AddPatient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddWard",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 on adding ward\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200))\r",
+							"    var id = pm.response.json();\r",
+							"    pm.environment.set(\"wardId\", id);\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"East Ward\",\r\n  \"wardId\": {{$randomInt}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44377/api/Ward/AddWard",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Ward",
+						"AddWard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetWards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 on getting wards\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200))\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44377/api/Ward/GetWards",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Ward",
+						"GetWards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditPatient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 on editing patient\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200))\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"{{patientId}}\",\r\n    \"name\": \"BobEdited\",\r\n    \"dateOfBirth\": \"2021-08-13T14:38:41.752Z\",\r\n    \"gender\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44377/api/Patient/EditPatient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Patient",
+						"EditPatient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AdmitPatient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 on admit patient\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200))\r",
+							"})\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": \"{{patientId}}\",\r\n  \"admitDate\": \"2021-08-13T14:40:13.618Z\",\r\n  \"notes\": \"Test Notes\",\r\n  \"wardId\": {{wardId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44377/api/Patient/AdmitPatient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Patient",
+						"AdmitPatient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AdmitPatient Already Active",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 400 with already active spell\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(400))\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": \"{{patientId}}\",\r\n  \"admitDate\": \"2021-08-13T14:40:13.618Z\",\r\n  \"notes\": \"Test Notes\",\r\n  \"wardId\": {{wardId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44377/api/Patient/AdmitPatient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Patient",
+						"AdmitPatient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetActivePatients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 on getting active patients\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200))\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44377/api/Patient/GetActivePatients",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Patient",
+						"GetActivePatients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetActiveWardPatients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 on getting active ward patients\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200))\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44377/api/Ward/GetActiveWardPatients?wardId={{wardId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Ward",
+						"GetActiveWardPatients"
+					],
+					"query": [
+						{
+							"key": "wardId",
+							"value": "{{wardId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DischargePatient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Returns 200 on discharge patient\", function () {\r",
+							"    pm.expect(pm.response.to.have.status(200))\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"patientId\": \"{{patientId}}\",\r\n  \"dischargeDate\": \"2021-08-13T14:41:36.357Z\",\r\n  \"notes\": \"A few more notes\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44377/api/Patient/DischargePatient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44377",
+					"path": [
+						"api",
+						"Patient",
+						"DischargePatient"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "patientId",
+			"value": ""
+		}
+	]
+}
